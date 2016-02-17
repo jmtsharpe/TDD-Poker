@@ -94,6 +94,21 @@ class Hand
     "#{VALUES_HASH.key(card_values[4])} high"
   end
 
+  def self.compare_hands(hand_arr)
+    hands = hand_arr.map { |hand| hand.calculate_hand }
+    hand_indices = hands.map { |el| HAND_RANKS.index(el) }
+    best_hand_index = 0
+    best_index = nil
+    hand_indices.each_with_index do |el, i|
+      if best_index.nil? || el < best_index
+        best_index = el
+        best_hand_index = i
+      end
+    end
+
+    best_hand_index  
+  end
+
 
 
 end

@@ -189,9 +189,34 @@ describe Hand do
       ]
 
       expect(hand.calculate_hand).to eq("A high")
+    end
+  end
 
+  describe "::compare_hands" do
+    let(:hand1) { Hand.new }
+    let(:hand2) { Hand.new }
+
+    it "compares hands and returns index of the best hand" do
+      hand1.cards = [
+        Card.new("7", :hearts),
+        Card.new("4", :spades),
+        Card.new("2", :diamonds),
+        Card.new("6", :clubs),
+        Card.new("5", :hearts)
+      ]
+
+      hand2.cards = [
+        Card.new("A", :hearts),
+        Card.new("J", :clubs),
+        Card.new("10", :hearts),
+        Card.new("Q", :hearts),
+        Card.new("K", :hearts)
+      ]
+
+      expect(Hand.compare_hands([hand1, hand2])).to eq(1)
 
     end
+
 
   end
 
