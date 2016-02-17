@@ -163,6 +163,36 @@ describe Hand do
 
     end
 
+    it "returns high card" do
+
+      hand.cards = [
+        Card.new("7", :hearts),
+        Card.new("4", :spades),
+        Card.new("2", :diamonds),
+        Card.new("6", :clubs),
+        Card.new("5", :hearts)
+      ]
+
+      expect(hand.calculate_hand).to eq("7 high")
+
+
+    end
+
+    it "returns Ace high" do
+
+      hand.cards = [
+        Card.new("A", :hearts),
+        Card.new("4", :spades),
+        Card.new("2", :diamonds),
+        Card.new("6", :clubs),
+        Card.new("5", :hearts)
+      ]
+
+      expect(hand.calculate_hand).to eq("A high")
+
+
+    end
+
   end
 
 end

@@ -53,6 +53,7 @@ class Hand
     return "Three-of-a-kind" if counts.has_value?(3)
     return "Two-pair" if two_pair?
     return "Pair" if counts.has_value?(2)
+    high_card
   end
 
   def count_cards
@@ -83,6 +84,14 @@ class Hand
   def two_pair?
     counts = count_cards
     counts.has_value?(2) && counts.size == 3
+  end
+
+  def high_card
+    card_values = []
+    cards.each { |el| card_values << VALUES_HASH[el.value] }
+    card_values.sort!
+    return "A high" if card_values[0] == 0
+    "#{VALUES_HASH.key(card_values[4])} high"
   end
 
 
